@@ -37,7 +37,7 @@ def predict():
         s = "value"
         for i in range(0,difference+1):
             res = (str(s)+str(i))
-            result = request.form[res]
+            result.append(request.form[res])
         # result_lenght = len(result)
 
         steel_output = []
@@ -100,22 +100,21 @@ def predict():
         return render_template("index.html", 
                                 startYear=" Your Starting Year for Prediction is {} ".format(startYear),
                                 endYear="Your Ending Year for Prediction is {} ".format(endYear),
+                                    
+                                steel=' {} '.format(steel_predict),
 
-                                steel='Quantity of steel is {} tonnes'.format(steel_predict),
+                                 plastics='{} '.format(plastic_predict),
 
-                                 plastics='Quantity of plastics is {} tonnes'.format(plastic_predict),
+                                 iron=' {} '.format(iron_predict),
 
-                                 iron='Quantity of iron is {} tonnes'.format(iron_predict),
-
-                                 rubber='Quantity of rubber is {} tonnes'.format(rubber_predict),
+                                 rubber='{} '.format(rubber_predict),
                             
-                                 aluminium='Quantity of aluminum is {} tonnes'.format(aluminium_predict),
+                                 aluminium=' {} '.format(aluminium_predict),
 
-                                 glass='Quantity of glass is {} tonnes'.format(glass_predict),
+                                 glass=' {} '.format(glass_predict),
 
                                 # diff="Year Difference is {}".format(difference),
-
-                                 copper='Quantity of copper is {} tonnes'.format(copper_predict)
+                                 copper='{}'.format(copper_predict)
 
 
                             )
@@ -134,3 +133,7 @@ def predict():
 
 if __name__ == '__main__':
    app.run(use_reloader = True,debug=True)
+
+
+
+

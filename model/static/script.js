@@ -1,3 +1,4 @@
+
 var totalYears;
 var startYear;
 let endYear;
@@ -9,10 +10,9 @@ var inputOfCars = [];
 var index = 0;
 var values;
 let dataToBeSend;
-
-var check;
-
-
+var names;
+var checkedValues;
+var namesofcheck;
 
 function createNewElement(event) {
     
@@ -24,7 +24,6 @@ function createNewElement(event) {
     if( endYear  <  startYear ) {
         alert("You Have Not Entered Valid Year");
     } else {
-
     difference = parseInt(endYear) - parseInt(startYear);
     console.log("Total Number of Column is"+difference);
      totalYears = difference;
@@ -57,14 +56,6 @@ function createNewElement(event) {
 
 
 
-
-
-
-
-
-
-
-
 function TotalYears() {
     for(var i=0;i<=difference;i++){
         values = 'carinput' + i;
@@ -74,11 +65,6 @@ function TotalYears() {
     console.log(inputOfCars[j]);
     }
 
-
-
-
-    
-   
     
 
 
@@ -97,13 +83,26 @@ function TotalYears() {
 
 
 
-function show() { 
-    var values = [].filter.call(document.getElementsByName('veh'), function(c) {
-      return c.checked;
-    }).map(function(c) {
-      return c.value;
-    });
-    document.getElementById('show').innerText = JSON.stringify(values);
-  }
+
+function confirmMaterial() {    
+    var values = [].filter.call(document.getElementsByName('checked_values'), function(c) {
+        return c.checked;
+      }).map(function(c) {
+        return c.value;
+      });
+      document.getElementById('show').innerText = JSON.stringify('You Have Selected'+values).toString();
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

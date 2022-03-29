@@ -30,7 +30,7 @@ df.head(10)
 del df["Year"]
 
 df.head()
-
+np.random.seed(99)
 msk = np.random.rand(len(df)) < 0.8
 train = df[msk]
 test = df[~msk]

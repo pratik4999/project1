@@ -31,7 +31,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">  </script>
 </head>
 <body>
-    <form class="container-fluid" action = "http://localhost:5000/" method = "POST" >
+    <form class="container-fluid" action = "http://localhost:5000/predict" method = "POST" >
         <!-- Starting Year -->
         <label for="startyear"> Starting Year: </label>
         <input type="number" name="startyear" id="Starting_Year">
@@ -42,8 +42,8 @@
         
 
         <!-- Number Of Cars -->
-         <!-- <label for="no_of_cars"> Enter No Of Cars: </label>
-        <input type="number" name="no_of_cars" id="">    -->
+        <!-- <label for="no_of_cars"> Enter No Of Cars: </label>
+        <input type="number" name="no_of_cars" id="">  -->
         
         <!-- Input For Cars: -->
 
@@ -60,49 +60,88 @@
         <button type="button" onclick="TotalYears()"> Confirm No Of Years </button>
         
         <div class="checkboxes">
+            <!-- Steel -->
+            <input type="checkbox" id="steel" name="checked_values" value="Steel">
+            <label for="material_steel"> Steel </label>            
+            <br>
+            <!-- Iron -->
+            <input type="checkbox" id="iron" name="checked_values" value="Iron">
+            <label for="material_iron"> Iron </label>            
+            <br>
+            <!-- Aluminium -->
+            <input type="checkbox" id="aluminium" name="checked_values" value="Aluminium">
+            <label for="material_aluminium"> Aluminium  </label>
+            <br>
+            <!-- Plastic -->
+            <input type="checkbox" id="plastic" name="checked_values" value="Plastic">
+            <label for="material_plastic"> Plastic  </label>
+            <br>
+            <!-- Rubber -->
+            <input type="checkbox" id="rubber" name="checked_values" value="Rubber">
+            <label for="material_rubber"> Rubber  </label>
+            <br>
+            <!-- Copper -->
+            <input type="checkbox" id="copper" name="checked_values" value="Copper">
+            <label for="material_copper"> Copper  </label>
+            <br>
+            <!-- Glass -->
+            <input type="checkbox" id="glass" name="checked_values" value="Glass">
+            <label for="material_glass"> Glass </label>            
+            <br>
 
-  <label>
-        <input type="checkbox" name="veh" value="steel">steel
-      </label>
-      <label>
-        <input type="checkbox" name="veh" value="plastic">plastic
-      </label>
-      <label>
-        <input type="checkbox" name="veh" value="rubber">rubber
-      </label>
-      <label>
-        <input type="checkbox" name="veh" value="aluminium">aluminium
-      </label>
-      <label>
-        <input type="checkbox" name="veh" value="cooper">cooper
-      </label>
-      <button type="button" onclick="show()">show
-      </button>
-      <div id="show">
-      </div>  
-                 
+            
+            
+            <button   type="button"  onclick="confirmMaterial()" > Confirm </button>
+            <div id="show">  </div>
+            <br>
             <!-- Predict Button -->
             <button type="submit" class="btn btn-primary"> Predict </button>
         </div>
     </form>
          <div class="container-fluid">   
-        <h4>  {{ result1 }}</h4>
-        <h4>  {{ result2 }}</h4>
-        <h4>{{ steel }}</h4>
+         <!-- {{ result1 }}</h4>
+        {{ result2 }}</h4> 
+      <h4>{{ steel }}</h4> 
         <h4>{{ plastics }}</h4>
         <h4>{{ iron }}</h4>
         <h4>{{ rubber }}</h4>
         <h4>{{ aluminium }}</h4>
         <h4>{{ glass }}</h4>
-        <h4>  {{diff}} </h4>
-        <h4>{{ copper }}</h4>
+        <h4>{{ copper }}</h4> -->
 
-            <table>
-                
-            </table>
-
+        <table class="table-bordered">
+            <col>
+            <col>
+            <col>
+            
+            <col>
+            <tr>
+             
+                <th >Years</th>
+                <th >Materials</th>
+  
+            </tr>
+            <tr>
+                <th scope="col"> number of years</th>
+                <th scope="col">Steel</th>
+                <th scope="col">Plastic</th>
+                <th scope="col">Iron</th>
+                <th scope="col">copper</th>
+                <th scope="col">Rubber</th>
+                <th scope="col">Glass</th>
+                <th scope="col">Aluminium</th>
+            </tr>
+            <tr> 
+                <td style="width :0px;">  2021-2022 </td>
+                <td style="width :0px;">   {{ steel }}  </td>
+                <td style="width :0px;">  {{ plastics }}  </td>
+                <td style="width :0px;">  {{ iron }}   </td>
+                <td style="width :0px;">  {{ copper }}   </td>
+                <td style="width :0px;"> {{ rubber }} </td>
+                <td style="width :0px;"> {{ glass }} </td>
+                <td style="width :0px;"> {{ aluminium }} </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
- 
- 
