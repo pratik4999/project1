@@ -1,4 +1,3 @@
-
 var totalYears;
 var startYear;
 let endYear;
@@ -24,6 +23,7 @@ function createNewElement(event) {
     if( endYear  <  startYear ) {
         alert("You Have Not Entered Valid Year");
     } else {
+
     difference = parseInt(endYear) - parseInt(startYear);
     console.log("Total Number of Column is"+difference);
      totalYears = difference;
@@ -84,25 +84,58 @@ function TotalYears() {
 
 
 
-function confirmMaterial() {    
-    var values = [].filter.call(document.getElementsByName('checked_values'), function(c) {
-        return c.checked;
-      }).map(function(c) {
-        return c.value;
-      });
-      document.getElementById('show').innerText = JSON.stringify('You Have Selected'+values).toString();
+// function confirmMaterial() {    
+//     var values = [].filter.call(document.getElementsByName('checked_values'), function(c) {
+//         return c.checked;
+//       }).map(function(c) {
+//         return c.value;
+//       });
+//       document.getElementById('show').innerText = JSON.stringify('You Have Selected'+values).toString();
     
+// }
+
+
+
+
+// $("input :checkbox ").attr("checked",false).click(function()
+// {
+//     var shcolumn="."+$(this).attr("name");
+//     $ (shcolumn).toggle();
+// }
+
+
+// function confirmMaterial() {    
+//     $("input :checkbox ").attr("checked",false).click(function()
+// {
+//     var shcolumn="."+$(this).attr("name");
+//     $ (shcolumn).toggle();
+// })
+// }
+
+
+
+function hide_show_table(col_name)
+{
+ var checkbox_val=document.getElementById(col_name).value;
+ if(checkbox_val=="hide")
+ {
+  var all_col=document.getElementsByClassName(col_name);
+  for(var i=0;i<all_col.length;i++)
+  {
+   all_col[i].style.display="none";
+  }
+  document.getElementById(col_name+"_head").style.display="none";
+  document.getElementById(col_name).value="show";
+ }
+	
+ else
+ {
+  var all_col=document.getElementsByClassName(col_name);
+  for(var i=0;i<all_col.length;i++)
+  {
+   all_col[i].style.display="table-cell";
+  }
+  document.getElementById(col_name+"_head").style.display="table-cell";
+  document.getElementById(col_name).value="hide";
+ }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
