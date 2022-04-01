@@ -1,225 +1,203 @@
-
 <html lang="en">
-    <head>
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<!-- Ajax -->
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<!-- Jquery Cdn -->
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Raw Material Prediction </title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">  </script>
+</head>
+<body>
+    <form class="container-fluid" action = "http://localhost:5000/predict" method = "POST" >
+        <!-- Starting Year -->
+        <label for="startyear"> Starting Year: </label>
+        <input type="number" name="startyear" id="Starting_Year">
+        
+        <!-- Ending Year -->
+        <label for="endyear"> End Year: </label>
+        <input type="number" name="endyear" id="Ending_Year">
+        
+
+        <!-- Number Of Cars -->
+        <!-- <label for="no_of_cars"> Enter No Of Cars: </label>
+        <input type="number" name="no_of_cars" id="">  -->
+        
+        <!-- Input For Cars: -->
+
+        
+        <!-- <input type="button" onclick="MakeTable()" value="Enter Values"> -->
+             
+                <!--  Input Year Wise  -->
+                <input type="button" value="Enter Data" id = "newCarsBox" onclick="createNewElement()" />
+                        <div class="container-fluid">
+                            <span id="data"> </span>   
+                            <span id="data"> </span> 
+                            <span id="data"> </span>
+                        </div>
+        <button type="button" onclick="TotalYears()"> Confirm No Of Years </button>
+        
+        <div id="checkbox_div">
+ 
+            <li><input type="checkbox" value="hide" id="steel_col" onchange="hide_show_table(this.id);">steel</li>
+            <li><input type="checkbox" value="hide" id="plastic_col" onchange="hide_show_table(this.id);">plastic</li>
+            <li><input type="checkbox" value="hide" id="iron_col" onchange="hide_show_table(this.id);">iron</li>
+            <li><input type="checkbox" value="hide" id="rubber_col" onchange="hide_show_table(this.id);">rubber</li>
+            <li><input type="checkbox" value="hide" id="aluminium_col" onchange="hide_show_table(this.id);">aluminium</li>
+            <li><input type="checkbox" value="hide" id="glass_col" onchange="hide_show_table(this.id);">glass</li>
+            <li><input type="checkbox" value="hide" id="copper_col" onchange="hide_show_table(this.id);">copper</li>
+           </div>
+
+
+            <!-- Predict Button -->
+            <button type="submit" class="btn btn-primary"> Predict </button>
+        </div>
+    </form>
+         <div class="container-fluid">   
+         <!-- <h4>  {{ result1 }}</h4>
+        <h4>  {{ result2 }}</h4> -->
+         <!-- <h4>{{ steel }}</h4> -->
+        <!-- <h4>{{ plastics }}</h4>
+        <h4>{{ iron }}</h4>
+        <h4>{{ rubber }}</h4>
+        <h4>{{ aluminium }}</h4>
+        <h4>{{ glass }}</h4>
+        <h4>{{ copper }}</h4>   -->
+
+        {% block content %}
+        <table class="table-bordered">
+            <col>
+            <col>
+            <col>
+            <colgroup span="1000"></colgroup>
+            <col>
+            <tr>
+                <th rowspan="2" >Years</th>
     
-        <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                <th colspan="10"  >  Materials  </th>
+     
+            </tr>
+
+
+
+
+
+            <tr>
+
+                <th id="steel_col_head" scope="col">steel</th>
+                <th id="plastic_col_head">plastic</th>
+                <th id="iron_col_head">iron</th>
+                <th id="rubber_col_head">rubber</th>
+                <th id="aluminium_col_head">aluminium</th>
+                <th id="glass_col_head">glass</th>
+                <th id="copper_col_head">copper</th>
+               </tr>
+            <tr> 
+                <td style="width: 100px;"> {{years_to_render}}  </td>
+                <td class="steel_col"  style="width: 0px;" >{{steel_to_render}}</td>
+                <td class="plastic_col" style="width: 0px;"> {{plastic_to_render}} </td>
+                <td class="iron_col" style="width: 0px;">  {{iron_to_render}}</td>
+                <td class="rubber_col" style="width: 0px;">  {{rubber_to_render}}</td>
+                <td class="aluminium_col" style="width: 0px;">  {{aluminium_to_render}}</td>
+                <td class="glass_col" style="width: 0px;"> {{glass_to_render}} </td>
+                <td class="copper_col" style="width: 0px;">  {{copper_to_render}} </td>
+               </tr>   
+            </tr>
+
+        </table>
+        {% endblock %}
+
+
+
+        <!-- <table class="table-bordered">
+            <col>
+            <col>
+            <col>
+            <colgroup span="4"></colgroup>
+            <col>
+            <tr>
+                <th rowspan="2" style="vertical-align : middle;text-align:center; width: 50%;">Years</th>
     
-    
-    <!-- Ajax -->
-    
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <!-- Jquery Cdn -->
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>  Raw Material Prediction </title>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
-        <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}">  </script>
-    </head>
-    <body>
-        <form class="container-fluid" action = "http://localhost:5000/predict" method = "POST" >
-            <!-- Starting Year -->
-            <label for="startyear"> Starting Year: </label>
-            <input type="number" name="startyear" id="Starting_Year">
-            
-            <!-- Ending Year -->
-            <label for="endyear"> End Year: </label>
-            <input type="number" name="endyear" id="Ending_Year">
-            
-    
-            <!-- Number Of Cars -->
-            <!-- <label for="no_of_cars"> Enter No Of Cars: </label>
-            <input type="number" name="no_of_cars" id="">  -->
-            
-            <!-- Input For Cars: -->
-    
-            
-            <!-- <input type="button" onclick="MakeTable()" value="Enter Values"> -->
-                 
-                    <!--  Input Year Wise  -->
-                    <input type="button" value="Enter Data" id = "newCarsBox" onclick="createNewElement()" />
-                            <div class="container-fluid">
-                                <span id="data"> </span>   
-                                <span id="data"> </span> 
-                                <span id="data"> </span>
-                            </div>
-            <button type="button" onclick="TotalYears()"> Confirm No Of Years </button>
-<!--             
-            <div class="checkboxes"> -->
-                <!-- Steel -->
-                <!-- <input type="checkbox" id="steel" name="checked_values" value="Steel">
-                <label for="material_steel"> Steel </label>            
-                <br> -->
-                <!-- Iron -->
-                <!-- <input type="checkbox" id="iron" name="checked_values" value="Iron">
-                <label for="material_iron"> Iron </label>            
-                <br> -->
-                <!-- Aluminium -->
-                <!-- <input type="checkbox" id="aluminium" name="checked_values" value="Aluminium">
-                <label for="material_aluminium"> Aluminium  </label>
-                <br> -->
-                <!-- Plastic -->
-                <!-- <input type="checkbox" id="plastic" name="checked_values" value="Plastic">
-                <label for="material_plastic"> Plastic  </label>
-                <br> -->
-                <!-- Rubber -->
-                <!-- <input type="checkbox" id="rubber" name="checked_values" value="Rubber">
-                <label for="material_rubber"> Rubber  </label>
-                <br> -->
-                <!-- Copper -->
-                <!-- <input type="checkbox" id="copper" name="checked_values" value="Copper">
-                <label for="material_copper"> Copper  </label>
-                <br> -->
-                <!-- Glass -->
-                <!-- <input type="checkbox" id="glass" name="checked_values" value="Glass">
-                <label for="material_glass"> Glass </label>            
-                <br>
-     -->
-                
-                
-                <!-- <button   type="button"  onclick="confirmMaterial()" > Confirm </button>
-                <div id="show">  </div>
-                <br> -->
+                <th colspan="5" style="horizontal-align : middle;text-align:center; width: 50%;">Materials</th>
+     
+            </tr>
 
 
 
-                <!-- Predict Button -->
-               <button type="submit" class="btn btn-primary"> Predict </button>
-            </div> 
-        </form>
-             <div class="container-fluid">   
-             <!-- <h4>  {{ result1 }}</h4>
-            <h4>  {{ result2 }}</h4> -->
-             <!-- <h4>{{ steel }}</h4> -->
-            <!-- <h4>{{ plastics }}</h4>
-            <h4>{{ iron }}</h4>
-            <h4>{{ rubber }}</h4>
-            <h4>{{ aluminium }}</h4>
-            <h4>{{ glass }}</h4>
-            <h4>{{ copper }}</h4>   -->
-    
-            <!-- {% block content %}
-            <table class="table-bordered">
-    
-                <col>
-                <col>
-                <col>
-                
-                <col>
-                <tr>
-                 
-                    <th >Years</th>
-                    <th >Materials</th>
-      
-                </tr>
-                <tr>
-                    <th scope="col"> Years </th>
-                    <th scope="col">Steel</th>
-                    <th scope="col">Plastic</th>
-                    <th scope="col">Iron</th>
-                    <th scope="col">Rubber</th>
-                    <th scope="col">Aluminium</th>
-                    <th scope="col">Glass</th>
-                    <th scope="col">Copper</th>
-                    
-                   
-                </tr>
-                <tr> 
-                    <td style="width: 100px;"> {{years_to_render}}  </td>
-                    <td style="width :0px;">   {{steel_to_render}}  </td>
-                    <td style="width :0px;">  {{plastic_to_render}}  </td>
-                    <td style="width :0px;">  {{iron_to_render}}  </td>
-                    <td style="width :0px;">  {{rubber_to_render}}  </td>
-                    <td style="width :0px;">  {{aluminium_to_render}}  </td>
-                    <td style="width :0px;">  {{glass_to_render}}  </td>
-                    <td style="width :0px;">  {{copper_to_render}}  </td>
-                </tr>
-    
-            </table>
-            {% endblock %} -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-                 
-    
-
-
-
-
-
-
-               
-
-                    <div id="checkbox_div">
-                     <p>Show Hide Column</p>
-                     <li><input type="checkbox" value="hide" id="steel_col" onchange="hide_show_table(this.id);">steel</li>
-                     <li><input type="checkbox" value="hide" id="plastic_col" onchange="hide_show_table(this.id);">plastic</li>
-                     <li><input type="checkbox" value="hide" id="iron_col" onchange="hide_show_table(this.id);">iron</li>
-                     <li><input type="checkbox" value="hide" id="rubber_col" onchange="hide_show_table(this.id);">rubber</li>
-                     <li><input type="checkbox" value="hide" id="aluminium_col" onchange="hide_show_table(this.id);">aluminium</li>
-                     <li><input type="checkbox" value="hide" id="glass_col" onchange="hide_show_table(this.id);">glass</li>
-                     <li><input type="checkbox" value="hide" id="copper_col" onchange="hide_show_table(this.id);">copper</li>
-                    </div>
-                    
-            <table class="table-bordered">
-
-                    <table id="employee_table" >
-                    <tr>
-                    
-                     <th scope="col"> Years </th>
-                     <th id="steel_col_head" scope="col">steel</th>
-                     <th id="plastic_col_head">plastic</th>
-                     <th id="iron_col_head">iron</th>
-                     <th id="rubber_col_head">rubber</th>
-                     <th id="aluminium_col_head">aluminium</th>
-                     <th id="glass_col_head">glass</th>
-                     <th id="copper_col_head">copper</th>
-                    </tr>
-                    
-                    <tr>
-                        <td style="width: 100px;"> {{years_to_render}}  </td>
-                     <td class="steel_col"  style="width: 0px;" >{{steel_to_render}}</td>
-                     <td class="plastic_col" style="width: 0px;"> {{plastic_to_render}} </td>
-                     <td class="iron_col" style="width: 0px;">  {{iron_to_render}}</td>
-                     <td class="rubber_col" style="width: 0px;">  {{rubber_to_render}}</td>
-                     <td class="aluminium_col" style="width: 0px;">  {{aluminium_to_render}}</td>
-                     <td class="glass_col" style="width: 0px;"> {{glass_to_render}} </td>
-                     <td class="copper_col" style="width: 0px;">  {{copper_to_render}} </td>
-                    </tr>    
-                    </table>
-
-
+            <tr>
+                <th scope="col">Steel</th>
+                <th scope="col">Plastic</th>
+                <th scope="col">Iron</th>
+                <th scope="col">copper</th>
+                <th scope="col">Rubber</th>
+            </tr>
+            <tr>
+                <th>2021-22</th>
+                <td>   </td>
+                <td>     </td>
+                <td>     </td>
+                <td>     </td>
+                <td>     </td>
+            </tr>
+            <tr>
+        </table> -->
 
            
-        </div>
-    </body>
-    </html>
-    
-    
-    
+   <!-- <table class="table-bordered"> -->
+
+           <!-- <table id="employee_table" >
+           <tr>
+           
+            <th scope="col"> Years </th>
+            <th id="steel_col_head" scope="col">steel</th>
+            <th id="plastic_col_head">plastic</th>
+            <th id="iron_col_head">iron</th>
+            <th id="rubber_col_head">rubber</th>
+            <th id="aluminium_col_head">aluminium</th>
+            <th id="glass_col_head">glass</th>
+            <th id="copper_col_head">copper</th>
+           </tr>
+           
+           <tr>
+               <td style="width: 100px;"> {{years_to_render}}  </td>
+            <td class="steel_col"  style="width: 0px;" >{{steel_to_render}}</td>
+            <td class="plastic_col" style="width: 0px;"> {{plastic_to_render}} </td>
+            <td class="iron_col" style="width: 0px;">  {{iron_to_render}}</td>
+            <td class="rubber_col" style="width: 0px;">  {{rubber_to_render}}</td>
+            <td class="aluminium_col" style="width: 0px;">  {{aluminium_to_render}}</td>
+            <td class="glass_col" style="width: 0px;"> {{glass_to_render}} </td>
+            <td class="copper_col" style="width: 0px;">  {{copper_to_render}} </td>
+           </tr>     
+           </table> -->
+
+            
+
+
+             
+
+    </div>
+</body>
+</html>

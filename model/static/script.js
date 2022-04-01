@@ -117,7 +117,7 @@ function TotalYears() {
 function hide_show_table(col_name)
 {
  var checkbox_val=document.getElementById(col_name).value;
- if(checkbox_val=="hide")
+ if(checkbox_val=="show")
  {
   var all_col=document.getElementsByClassName(col_name);
   for(var i=0;i<all_col.length;i++)
@@ -125,7 +125,7 @@ function hide_show_table(col_name)
    all_col[i].style.display="none";
   }
   document.getElementById(col_name+"_head").style.display="none";
-  document.getElementById(col_name).value="show";
+  document.getElementById(col_name).value="hide";
  }
 	
  else
@@ -136,6 +136,6 @@ function hide_show_table(col_name)
    all_col[i].style.display="table-cell";
   }
   document.getElementById(col_name+"_head").style.display="table-cell";
-  document.getElementById(col_name).value="hide";
+  document.getElementById(col_name).value="show";
  }
 }
