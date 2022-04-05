@@ -123,7 +123,15 @@ def predict():
                                 aluminium_to_render = str(aluminium_predict)[1:-1].replace(',',' '),
                                 glass_to_render = str(glass_predict)[1:-1].replace(',',' '),
                                 copper_to_render = str(copper_predict)[1:-1].replace(',',' '),
-                                
+                                Years = "Years",
+                                Materials = "Materials",
+                                Steel = "Steel",
+                                Plastic = "Plastic",
+                                Iron = "Iron",
+                                Rubber = "Rubber",
+                                Aluminium = "Aluminium",
+                                Glass = "Glass",
+                                Copper = "Copper"
                             )
 
 
