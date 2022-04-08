@@ -7,17 +7,21 @@
 
 <!-- Ajax -->
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+<!--  Jquery Cdn   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+
+<!-- highcharts -->
+<script src = "https://code.highcharts.com/highcharts.js"></script> 
+<script src = "https://code.highcharts.com/modules/data.js"></script>
+
 <!-- Jquery Cdn -->
 
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -47,6 +51,8 @@
 This is for containe under container -->
 
 <!-- <div class="container-fluid page-body-wrapper"> -->
+    
+
     <div class="main-panel">
         <div class="content-wrapper">
             <div class=" justify-content-sm-center ">
@@ -64,42 +70,6 @@ This is for containe under container -->
                              <div class="card-body">
 
                                 <!-- end -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <form name="f1" action = "http://localhost:5000/predict" method = "POST" >
         <!-- Starting Year -->
@@ -171,7 +141,7 @@ This is for containe under container -->
 
 
         {% block content %}
-        <table class="table-bordered">
+        <table class="table-bordered" div id='table_div'>
 
             <tr>
                 <th > {{Years}} </th>
@@ -197,10 +167,90 @@ This is for containe under container -->
                 <td style="display:none" id="glassCol" class="glassCol" style="width :0px;">  {{glass_to_render}}  </td>
                 <td style="display:none" id="copperCol" class="copperCol" style="width :0px;">  {{copper_to_render}}  </td>
             </tr>
-
+            
         </table>
+        
         {% endblock %}
+        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+       
+        <script language = "JavaScript">
+           $(document).ready(function() {
+              var data = {
+                 table: 'datatable'
+              };
+              var chart = {
+                 type: 'bar'
+              };
+              var title = {
+                 text: 'Raw Material Demand Over The Years'   
+              };      
+              var yAxis = {
+                 allowDecimals: true,
+                 title: {
+                    text: 'Quantity in Tonnes'
+                 }
+              };
+              var tooltip = {
+                 formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                       this.point.y + ' ' + this.point.name.toLowerCase();
+                 }
+              };
+              var credits = {
+                 enabled: false
+              };  
+              var json = {};   
+              json.chart = chart; 
+              json.title = title; 
+              json.data = data;
+              json.yAxis = yAxis;
+              json.credits = credits;  
+              json.tooltip = tooltip;  
+              $('#container').highcharts(json);
+           });
+        </script>
+        
+        <table id = "datatable">
+           <thead>
+              <tr>
+                 <th></th>
+                 <th>{{years_to_render}}</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr>
+                 <th>Steel</th>
+                 <td>{{steel_to_render}}</td>
+              </tr>
+              <tr>
+                 <th>Plastics</th>
+                 <td>{{plastic_to_render}}</td>
+              </tr>
+              <tr>
+                 <th>Iron</th>
+                 <td>{{iron_to_render}}</td>
 
+              </tr>
+              <tr>
+                 <th>Rubber</th>
+                 <td>{{rubber_to_render}}</td>
+              </tr>
+              <tr>
+                 <th>Aluminium</th>
+                 <td>{{aluminium_to_render}}</td>
+              </tr>
+              <tr>
+                <th>Glass</th>
+                <td>{{glass_to_render}}</td>
+             </tr>
+             <tr>
+                <th> Copper </th>
+                <td>{{copper_to_render}}</td>
+             </tr>
+           </tbody>
+        </table>
+        
     </div>
+    
 </body>
 </html>

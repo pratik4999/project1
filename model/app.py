@@ -1,8 +1,13 @@
 import itertools
+
 import json
 import pandas as np
 from flask import Flask, render_template, request
 import pickle
+
+import matplotlib.pyplot as plt 
+
+
 
 app = Flask(__name__)
 
@@ -26,6 +31,11 @@ def home():
        return render_template("index.html")
 
 
+
+
+
+
+
 @app.route('/predict',methods=['POST','GET'])
 def predict():
     if request.method == "POST":
@@ -40,6 +50,12 @@ def predict():
             result.append(request.form[res])
         
         print(result)
+
+
+
+
+
+
 
         steel_output = []
         plastics_output = []
@@ -110,7 +126,20 @@ def predict():
         print(glass_predict)
         print(copper_predict)
         print(years_predict)
-   
+
+
+        # data = { 
+        #     "steel_chart":steel_predict,
+        #     "plastic_chart":plastic_predict,
+        #     "iron_chart":steel_predict,
+        #     "rubber_chart":steel_predict,
+        #     "aluminium_chart":steel_predict,
+        #     "glass_chart":steel_predict,
+        #     "copper_chart":steel_predict
+        #     }
+        # return data
+
+
 
         return render_template("index.html", 
                             startYear=" Your Starting Year for Prediction is {} ".format(startYear),
@@ -133,6 +162,103 @@ def predict():
                                 Glass = "Glass",
                                 Copper = "Copper"
                             )
+
+
+
+# @app.route('/charts',methods=["GET","POST"])
+# def Charts():
+#     if request.method == "POST":
+#         startYear = request.form['startyear']
+#         endYear = request.form['endyear']
+#         difference = int(endYear) - int(startYear)
+        
+#         result = []
+#         s = "value"
+#         for i in range(0,difference+1):
+#             res = (str(s)+str(i))
+#             result.append(request.form[res])
+        
+#         print(result)
+
+
+
+
+
+
+
+#         steel_output = []
+#         plastics_output = []
+#         iron_output = []
+#         rubber_output = []
+#         aluminium_output = []
+#         glass_output = []
+#         copper_output = []
+        
+#         years = []
+#         start = int(startYear)
+#         end = int(endYear)
+
+#         next = (start % 100) + 1
+#         snext = ""
+#         while start <= end:
+#             snext = str(start) +'-'+ str(format(next, '02d'))
+#             years.append(snext)
+#             start += 1
+#             next += 1
+
+
+#         for i in result:
+#             steel = steel_model.predict([[i]])
+#             steel_output.append(steel[0][0].round(2))
+            
+#             plastics = plastics_model.predict([[i]])
+#             plastics_output.append(plastics[0][0].round(2))
+
+#             iron = iron_model.predict([[i]])
+#             iron_output.append(iron[0][0].round(2))
+            
+#             rubber = rubber_model.predict([[i]])
+#             rubber_output.append(rubber[0][0].round(2))
+
+#             aluminium = aluminium_model.predict([[i]])
+#             aluminium_output.append(aluminium[0][0].round(2))
+
+#             glass =  glass_model.predict([[i]])
+#             glass_output.append(glass[0][0].round(2))
+
+#             copper = copper_model.predict([[i]])
+#             copper_output.append(copper[0][0].round(2))
+
+#         years_predict = []
+#         steel_predict = []
+#         plastic_predict = []
+#         iron_predict = []
+#         rubber_predict = []
+#         aluminium_predict = []
+#         glass_predict = []
+#         copper_predict = [] 
+
+#         years_predict =result 
+#         steel_predict = steel_output
+#         plastic_predict = plastics_output
+#         iron_predict = iron_output
+#         rubber_predict = rubber_output
+#         aluminium_predict = aluminium_output
+#         glass_predict = glass_output
+#         copper_predict = copper_output
+ 
+#         data = { 
+#             "steel_chart":steel_predict,
+#             "plastic_chart":steel_predict,
+#             "iron_chart":steel_predict,
+#             "rubber_chart":steel_predict,
+#             "aluminium_chart":steel_predict,
+#             "glass_chart":steel_predict,
+#             "copper_chart":steel_predict
+#             }
+#         return data
+
+
 
 
 if __name__ == '__main__':

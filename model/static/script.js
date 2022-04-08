@@ -12,7 +12,7 @@ let dataToBeSend;
 var names;
 var checkedValues;
 var namesofcheck;
-
+var totalSteel = [];
 
 
 
@@ -72,31 +72,6 @@ function TotalYears() {
 
 
 
-// function hide_show_table(col_name)
-// {
-//  var checkbox_val=document.getElementById(col_name).checked;
-// if(checkbox_val=="true")
-// {
-//   var all_col=document.getElementsByClassName(col_name);
-//   for(var i=0;i<all_col.length;i++)
-//   {
-//    all_col[i].style.display="none";
-//   }
-//   document.getElementById(col_name+"_head").style.display="none";
-//   document.getElementById(col_name).checked="true";
-//  }
-	
-//  else
-//  {
-//   var all_col=document.getElementsByClassName(col_name);
-//   for(var i=0;i<all_col.length;i++)
-//   {
-//    all_col[i].style.display="table-cell";
-//   }
-//   document.getElementById(col_name+"_head").style.display="table-cell";
-//   document.getElementById(col_name).checked="true";
-//  }
-// }
 
 function  checkingValues() {
     var checkboxSteel = document.getElementById("materialSteel")
@@ -200,3 +175,102 @@ function  checkingValues() {
     }
 
 }
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const chart = Highcharts.chart('container-block', {
+//         chart: {
+//             type: 'bar'
+//         },
+//         title: {
+//             text: 'Raw Material Consumption'
+//         },
+//         xAxis: {
+//             categories: ['Steels', 'Platics', 'Iron', 'Rubber', 'Aluminium', 'Glass', 'Copper']
+//         },
+//         yAxis: {
+//             title: {
+//                 text: 'Demand over the Years'
+//             }
+//         },
+//         series: [{
+//             name: '2001-2002',
+//             data: [2154365, 2543655, 3054365, 3600000]
+//         }, {
+//             name: '2002-2003',
+//             data: [2400000, 2700000, 3000000]
+//         }]
+//     });
+// });
+
+
+
+
+// var username='{{Years}}'
+
+
+
+
+// google.load('visualization', '1', {packages: ['corechart', 'bar']});
+// google.setOnLoadCallback(drawBasic);
+
+// function drawBasic() {
+
+//     var data = google.visualization.arrayToDataTable([
+//         ['Year', 'Population',],
+//         ['2000-01', 2000],
+    
+//     ]);
+
+//     var options = {
+//         title: 'Population of People with Disabilities',
+//         chartArea: {width: '50%'},
+//         hAxis: {
+//             title: 'Total Population',
+//             minValue: 0
+//         },
+//         vAxis: {
+//             title: 'Year'
+//         }
+//     };
+
+//     var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+//     chart.draw(data, options);
+// }
+
+
+
+
+
+//     class MyCharts{
+
+//       constructor(XData, YData)
+//       {
+//         this.XData = XData;
+//         this.YData = YData;
+//       }
+
+//       createGraph()
+//       {
+//         var data =
+//                 {
+//                   labels: this.XData,
+//                   series:[
+//                           this.YData
+//                   ]
+//                 }
+//         new Chartist.Line('.ct-chart', data);
+//       }
+//     }
+
+//   var XData= ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+//     var YData = [5, 2, 4, 2, 0];
+//     var data = $.get('steel_chart');
+//     var tm = data.done(function (resp) {
+//       console.log("JSON DATA", resp.steel_chart);
+//       var obj = new MyCharts(XData, resp.steel_chart);
+//       obj.createGraph();
+
+//     })
+
