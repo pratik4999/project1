@@ -31,11 +31,6 @@ def home():
        return render_template("index.html")
 
 
-
-
-
-
-
 @app.route('/predict',methods=['POST','GET'])
 def predict():
     if request.method == "POST":
@@ -47,14 +42,9 @@ def predict():
         s = "value"
         for i in range(0,difference+1):
             res = (str(s)+str(i))
-            result.append(request.form[res])
+            result.append(int(request.form[res]))
         
         print(result)
-
-
-
-
-
 
 
         steel_output = []
@@ -100,7 +90,7 @@ def predict():
             copper = copper_model.predict([[i]])
             copper_output.append(copper[0][0].round(2))
 
-        years_predict = []
+        # years_predict = []
         steel_predict = []
         plastic_predict = []
         iron_predict = []
@@ -109,7 +99,7 @@ def predict():
         glass_predict = []
         copper_predict = [] 
 
-        years_predict =result 
+        # years_predict = result
         steel_predict = steel_output
         plastic_predict = plastics_output
         iron_predict = iron_output
@@ -125,19 +115,21 @@ def predict():
         print(aluminium_predict)
         print(glass_predict)
         print(copper_predict)
-        print(years_predict)
+        # print(years_predict)
 
 
-        # data = { 
-        #     "steel_chart":steel_predict,
-        #     "plastic_chart":plastic_predict,
-        #     "iron_chart":steel_predict,
-        #     "rubber_chart":steel_predict,
-        #     "aluminium_chart":steel_predict,
-        #     "glass_chart":steel_predict,
-        #     "copper_chart":steel_predict
-        #     }
-        # return data
+
+        steel_to_tabarle = []
+        years_to_table = []
+        diff = 0
+        d = 0
+
+        years_table = []
+        steel_table = []
+
+
+
+
 
 
 
@@ -145,40 +137,40 @@ def predict():
                             startYear=" Your Starting Year for Prediction is {} ".format(startYear),
                             endYear="Your Ending Year for Prediction is {} ".format(endYear),
                                 years_to_render = str(years)[1:-1].replace(',',' ').replace("'",' '),
-                                steel_to_render = str(steel_predict)[1:-1].replace(',',' '),          
+                                years = years,
+                                # years_table=years_table,
+                                steel_to_render = str(steel_predict)[1:-1].replace(',',' '),       
+                                steel_table = steel_predict,
+                                start = startYear ,
+                                end  = endYear ,
                                 plastic_to_render = str(plastic_predict)[1:-1].replace(',',' '),
+                                plastic_table = plastic_predict, 
                                 iron_to_render = str(iron_predict)[1:-1].replace(',',' '),
+                                iron_table = iron_predict,
                                 rubber_to_render = str(rubber_predict)[1:-1].replace(',',' ' ),
+                                rubber_table = rubber_predict,
+                                diff = int(endYear)-int(startYear),
+                                d = diff,
                                 aluminium_to_render = str(aluminium_predict)[1:-1].replace(',',' '),
+                                aluminium_table = aluminium_predict,
                                 glass_to_render = str(glass_predict)[1:-1].replace(',',' '),
+                                glass_table=glass_predict,
                                 copper_to_render = str(copper_predict)[1:-1].replace(',',' '),
+                                copper_table=copper_predict,
                                 Years = "Years",
                                 Materials = "Materials",
-                                Steel = "Steel",
-                                Plastic = "Plastic",
-                                Iron = "Iron",
-                                Rubber = "Rubber",
-                                Aluminium = "Aluminium",
-                                Glass = "Glass",
-                                Copper = "Copper"
+                                Steels = "Steel",
+                                Plastics = "Plastic",
+                                Irons = "Iron",
+                                Rubbers = "Rubber",
+                                Aluminiums = "Aluminium",
+                                Glasss = "Glass",
+                                Coppers = "Copper"
                             )
 
 
 
-# @app.route('/charts',methods=["GET","POST"])
-# def Charts():
-#     if request.method == "POST":
-#         startYear = request.form['startyear']
-#         endYear = request.form['endyear']
-#         difference = int(endYear) - int(startYear)
-        
-#         result = []
-#         s = "value"
-#         for i in range(0,difference+1):
-#             res = (str(s)+str(i))
-#             result.append(request.form[res])
-        
-#         print(result)
+
 
 
 
@@ -261,5 +253,56 @@ def predict():
 
 
 
+
+
+
+
 if __name__ == '__main__':
    app.run(use_reloader = True,debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

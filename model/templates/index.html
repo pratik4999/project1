@@ -10,13 +10,16 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 <!--  Jquery Cdn   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <!-- highcharts -->
+
 <script src = "https://code.highcharts.com/highcharts.js"></script> 
 <script src = "https://code.highcharts.com/modules/data.js"></script>
 
@@ -29,7 +32,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible"  content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>  Raw Material Prediction </title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
@@ -39,7 +42,7 @@
 
     
 
-    <!-- navigation bar heading starts from hear -->
+    <!-- Navigation bar heading starts from hear -->
     <ul class="nav">
         <li><a href="/">Raw Material Forecasting in Automobile Industry</a></li>
     
@@ -53,10 +56,9 @@ This is for containe under container -->
 <!-- <div class="container-fluid page-body-wrapper"> -->
     
 
-    <div class="main-panel">
+    <!-- <div class="main-panel"> -->
         <div class="content-wrapper">
-            <div class=" justify-content-sm-center ">
-
+            <div class="justify-content-sm-center ">
             </div>
 
             <div class="text-center">
@@ -65,8 +67,7 @@ This is for containe under container -->
             </div>
 
                     <!-- <div class="col-lg-12 grid-margin stretch-card"> -->
-                        <div class="card ">
-
+                        <!-- <div class="card "> -->
                              <div class="card-body">
 
                                 <!-- end -->
@@ -103,32 +104,32 @@ This is for containe under container -->
         
         <div class="checkboxes">
             <!-- Steel -->
-            <input type="checkbox" id="materialSteel" name="material_steel" value="Steel" onclick="checkingValues()">
-            <label for="materialSteel"> Steel </label>            
+            <!-- <input type="checkbox" id="materialSteel" name="material_steel" value="Steel" onclick="checkingValues()">
+            <label for="materialSteel"> Steel </label>             -->
            
             <!-- Plastic -->
-            <input type="checkbox" id="materialPlastic" name="material_plastic" value="Plastic" onclick="checkingValues()">
-            <label for="materialPlastic"> Plastic  </label>
+            <!-- <input type="checkbox" id="materialPlastic" name="material_plastic" value="Plastic" onclick="checkingValues()">
+            <label for="materialPlastic"> Plastic  </label> -->
           
             <!-- Iron -->
-            <input type="checkbox" id="materialIron" name="material_iron" value="Iron" onclick="checkingValues()">
-            <label for="materialIron"> Iron </label>            
+            <!-- <input type="checkbox" id="materialIron" name="material_iron" value="Iron" onclick="checkingValues()">
+            <label for="materialIron"> Iron </label>             -->
          
             <!-- Rubber -->
-            <input type="checkbox" id="materialRubber" name="material_rubber" value="Rubber" onclick="checkingValues()">
-            <label for="materialRubber"> Rubber  </label>
+            <!-- <input type="checkbox" id="materialRubber" name="material_rubber" value="Rubber" onclick="checkingValues()">
+            <label for="materialRubber"> Rubber  </label> -->
         
             <!-- Aluminium -->
-            <input type="checkbox" id="materialAluminium" name="material_aluminium" value="Aluminium" onclick="checkingValues()">
-            <label for="materialAluminium"> Aluminium  </label>
+            <!-- <input type="checkbox" id="materialAluminium" name="material_aluminium" value="Aluminium" onclick="checkingValues()">
+            <label for="materialAluminium"> Aluminium  </label> -->
          
             <!-- Copper -->
-            <input type="checkbox" id="materialCopper" name="material_copper" value="Copper" onclick="checkingValues()">
-            <label for="materialCopper"> Copper  </label>
+            <!-- <input type="checkbox" id="materialCopper" name="material_copper" value="Copper" onclick="checkingValues()">
+            <label for="materialCopper"> Copper  </label> -->
            
             <!-- Glass -->
-            <input type="checkbox" id="materialGlass" name="material_glass" value="Glass" onclick="checkingValues()">
-            <label for="materialGlass"> Glass </label>            
+            <!-- <input type="checkbox" id="materialGlass" name="material_glass" value="Glass" onclick="checkingValues()">
+            <label for="materialGlass"> Glass </label>             -->
          
 
             <!-- <button id="button"  type="button" class="btn btn-primary"  onclick="confirmMaterial()" > Confirm </button> -->
@@ -137,10 +138,10 @@ This is for containe under container -->
             <button type="submit"value="submit" class="btn btn-success"> Predict </button>
         </div>
     </form>
-         <div class="container-fluid">   
+         <div class="container">   
 
 
-        {% block content %}
+        <!-- {% block content %}
         <table class="table-bordered" div id='table_div'>
 
             <tr>
@@ -170,8 +171,81 @@ This is for containe under container -->
             
         </table>
         
-        {% endblock %}
-        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+        {% endblock %} -->
+
+
+
+        <table id = "datatable"  class="table-bordered">
+         <thead>
+            <tr>
+              <!-- Years -->
+               <th> {{Years}} </th>
+               <!-- <th> {{Materials}} </th> -->
+               {% for i in years %}
+                <td >  {{ i }}  </td>
+                {% endfor %}
+            </tr>
+         </thead>
+
+         <tbody>
+             <tr>
+              <!-- Steel -->
+               <th >{{Steels}}</th>
+               {% for steel in steel_table %}
+               <td  style="width :0px;">  {{ steel }}  </td>
+               {% endfor %}
+             </tr>
+            <!-- Plastic -->
+             <tr>
+               <th >{{Plastics}}</th>
+               {% for plastic in plastic_table %}
+               <td  style="width :0px;">{{ plastic }}</td>
+               {% endfor %}
+             </tr>
+         
+             <!-- IRON    -->
+             <tr>
+                <th> {{Irons}} </th>
+                {% for iron in iron_table %}
+                <td  style="width :0px;">{{ iron }}</td>
+                {% endfor %}
+             </tr>
+
+             <!-- Rubber -->
+             <tr>
+                <th>{{Rubbers}}</th>
+                {% for rubber in rubber_table %}
+                <td  style="width :0px;">{{ rubber }}</td>
+                {% endfor %}
+             </tr>
+             
+             <!-- Aluminium -->
+             <tr>
+                <th>{{Aluminiums}}</th>
+                {% for aluminium in aluminium_table %}
+                <td  style="width :0px;">{{ aluminium }}</td>
+                {% endfor %}
+             </tr>
+             <!-- Glass -->
+             <tr>
+                <th>{{Glasss}}</th>
+                {% for glass in glass_table %}
+                <td  style="width :0px;">{{ glass }}</td>
+                {% endfor %}
+             </tr>
+             <!-- Copper -->
+             <tr>
+                <th>{{Coppers}}</th>
+                {% for copper in copper_table %}
+                <td  style="width :0px;">{{ copper }}</td>
+                {% endfor %}
+             </tr>
+         </tbody>
+        
+      </table>
+
+      <div id = "container" style = "width: 550px;   height: 1400px; margin: 0 auto  "></div>
+   </div>
        
         <script language = "JavaScript">
            $(document).ready(function() {
@@ -179,6 +253,8 @@ This is for containe under container -->
                  table: 'datatable'
               };
               var chart = {
+               height: 1400,
+               
                  type: 'bar'
               };
               var title = {
@@ -190,10 +266,11 @@ This is for containe under container -->
                     text: 'Quantity in Tonnes'
                  }
               };
+
               var tooltip = {
                  formatter: function () {
                     return '<b>' + this.series.name + '</b><br/>' +
-                       this.point.y + ' ' + this.point.name.toLowerCase();
+                       this.point.y + ' ' + this.point.name.toUpperCase();
                  }
               };
               var credits = {
@@ -210,47 +287,8 @@ This is for containe under container -->
            });
         </script>
         
-        <table id = "datatable">
-           <thead>
-              <tr>
-                 <th></th>
-                 <th>{{years_to_render}}</th>
-              </tr>
-           </thead>
-           <tbody>
-              <tr>
-                 <th>Steel</th>
-                 <td>{{steel_to_render}}</td>
-              </tr>
-              <tr>
-                 <th>Plastics</th>
-                 <td>{{plastic_to_render}}</td>
-              </tr>
-              <tr>
-                 <th>Iron</th>
-                 <td>{{iron_to_render}}</td>
-
-              </tr>
-              <tr>
-                 <th>Rubber</th>
-                 <td>{{rubber_to_render}}</td>
-              </tr>
-              <tr>
-                 <th>Aluminium</th>
-                 <td>{{aluminium_to_render}}</td>
-              </tr>
-              <tr>
-                <th>Glass</th>
-                <td>{{glass_to_render}}</td>
-             </tr>
-             <tr>
-                <th> Copper </th>
-                <td>{{copper_to_render}}</td>
-             </tr>
-           </tbody>
-        </table>
-        
-    </div>
+       
     
 </body>
 </html>
+   

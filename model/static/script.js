@@ -16,7 +16,7 @@ var totalSteel = [];
 
 
 
-function createNewElement(event) {
+function createNewElement() {
     
     // totalYears=difference;
     startYear = parseInt(document.getElementById('Starting_Year').value);
@@ -32,7 +32,7 @@ function createNewElement(event) {
      totalYears = difference;
 
     for(var i=0;i<=difference;i++) { 
-    newCarsBox = document.createElement('input');
+    // newCarsBox = document.createElement('input');
     // txtNewInputBox = document.createElement('input');
     divTag = document.createElement('div');
     
@@ -68,8 +68,6 @@ function TotalYears() {
     console.log(inputOfCars[j]);
     }
 }
-
-
 
 
 
@@ -273,4 +271,3 @@ function  checkingValues() {
 //       obj.createGraph();
 
 //     })
-
