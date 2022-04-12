@@ -34,7 +34,13 @@ function createNewElement() {
     for(var i=0;i<=difference;i++) { 
     // newCarsBox = document.createElement('input');
     // txtNewInputBox = document.createElement('input');
+   
     divTag = document.createElement('div');
+    // if (! /^[0-9]{11}$/.test(divTag)) {
+    //     alert("Please input exactly 11 numbers!");
+    //     return false;
+    //   }
+    
     
     console.log("Total NO Of Years is "+totalYears);
     // For Year
@@ -51,8 +57,9 @@ function createNewElement() {
     // document.getElementById("data").appendChild(newCarsBox).placeholder=" Enter No Of Vehicle Here ";
     
     document.getElementById("data").appendChild(divTag);
-    
+   
     }
+
 }
 
 }

@@ -207,7 +207,7 @@ border: 1px solid red;
 
 .table-bordered{
 
-  margin: 24px 114px;
+  margin: 24px 75px;
 }
 
 
@@ -233,4 +233,15 @@ width: 227%;
 
 form {
   margin: 95px 147px;
+}
+
+
+#container{
+  
+
+  width: 550px;
+  height: 2000px;
+  margin: 0px auto;
+  overflow: hidden;
+
 }
